@@ -1,3 +1,4 @@
+// Elements ----------------------------------------------------------------------
 const enable = document.getElementById("enable");
 const aspectRatio = document.getElementById("aspectRatio");
 const zoomLevel = document.getElementById("zoomLevel");
