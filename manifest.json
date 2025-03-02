@@ -23,7 +23,7 @@
         "<all_urls>"
       ],
       "js": [
-        "js/inject.js"
+        "lib/content.js"
       ],
       "run_at": "document_start",
       "all_frames": true
@@ -32,7 +32,7 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "js/*"
+        "lib/*"
       ],
       "matches": [
         "<all_urls>"
