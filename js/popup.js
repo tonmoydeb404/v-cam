@@ -12,12 +12,13 @@ chrome.storage.sync.get(["enable", "ratioX", "ratioY", "zoomLevel"], (data) => {
 
 // Function to save settings
 function saveSettings() {
-  let ratioX, ratioY;
+  let ratioX = null;
+  let ratioY = null;
 
   if (aspectRatio.value && aspectRatio.value !== "auto") {
     const ratios = aspectRatio.value.split("/");
-    ratioX = parseInt(ratios[0]) || undefined;
-    ratioY = parseInt(ratios[1]) || undefined;
+    ratioX = parseInt(ratios[0]) || null;
+    ratioY = parseInt(ratios[1]) || null;
   }
 
   const settings = {
