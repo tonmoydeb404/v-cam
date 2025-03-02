@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vCam</title>
+
+  <style>
+    html {
+      width: 500px;
+    }
+
+    body {
+      padding: 10px;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    table {
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>vCam - Configure Your Webcam</h2>
+
+  <table>
+    <tbody>
+      <tr>
+        <td>Enable</td>
+        <td style="padding-right: 10px;">:</td>
+        <td>
+          <input type="checkbox" id="enable">
+        </td>
+      </tr>
+      <tr>
+        <td>Aspect Ratio</td>
+        <td style="padding-right: 10px;">:</td>
+        <td>
+          <select id="aspectRatio">
+            <option value="auto" selected>Auto</option>
+            <option value="16/9">Landscape</option>
+            <option value="9/16">Potrait</option>
+            <option value="1/1">Square</option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Zoom</td>
+        <td style="padding-right: 10px;">:</td>
+        <td>
+          <input type="number" min="1" max="2" step="0.1" value="1" id="zoomLevel" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <button id="apply">Apply</button>
+
+  <script src="./popup.js"></script>
+</body>
+
+</html>
