@@ -13,11 +13,24 @@ vCam is a browser extension that creates a virtual webcam, allowing users to app
 
 ## Installation
 
+### For Chrome
+
 1. Clone or download this repository.
-2. Open your browser and navigate to `chrome://extensions/`.
-3. Enable **Developer Mode** (toggle in the top right corner).
-4. Click **Load Unpacked** and select the extension folder.
-5. The vCam extension should now be available in your browser.
+2. Ensure `manifest.json` contains the content of `manifest-chrome.json`.
+3. Open your browser and navigate to `chrome://extensions/`.
+4. Enable **Developer Mode** (toggle in the top right corner).
+5. Click **Load Unpacked** and select the extension folder.
+6. The vCam extension should now be available in your browser.
+
+### For Firefox
+
+1. Clone or download this repository.
+2. Replace `manifest.json` with the content of `manifest-firefox.json`.
+3. Open Firefox and navigate to `about:debugging#/runtime/this-firefox`.
+4. Click **Load Temporary Add-on** and select `manifest.json`.
+5. The vCam extension should now be available in Firefox.
+
+For permanent installation in Firefox, package and sign the extension using the Mozilla Add-ons Developer Hub.
 
 ## Usage
 
