@@ -5,7 +5,7 @@ const zoomLevel = document.getElementById("zoomLevel");
 
 // Load stored values
 chrome.storage.sync.get(["enable", "ratioX", "ratioY", "zoomLevel"], (data) => {
-  enable.checked = !!data.enable;
+  enable.checked = typeof data.enable !== "boolean" ? true : data.enable;
   aspectRatio.value =
     data.ratioX && data.ratioY ? `${data.ratioX}/${data.ratioY}` : "auto";
   zoomLevel.value = data.zoomLevel || 1;
