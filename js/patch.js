@@ -1,10 +1,4 @@
-function monkeyPatchMediaDevices(ratioX, ratioY, zoomLevel) {
-  // if (navigator.mediaDevices.__patched) {
-  //   console.warn("MediaDevices already patched.");
-  //   return;
-  // }
-  // navigator.mediaDevices.__patched = true;
-
+function patchMediaDevices(ratioX, ratioY, zoomLevel) {
   console.log("Patching MediaDevices to add virtual webcam...");
 
   const enumerateDevicesFn = MediaDevices.prototype.enumerateDevices;
@@ -36,8 +30,16 @@ function monkeyPatchMediaDevices(ratioX, ratioY, zoomLevel) {
             video: {
               facingMode: args[0].facingMode,
               advanced: args[0].video.advanced,
-              width: args[0].video.width || 1280,
-              height: args[0].video.height || 720,
+              width:
+                args[0].video?.width?.ideal ||
+                args[0].video?.width?.exact ||
+                args[0].video?.width ||
+                1280,
+              height:
+                args[0].video?.height?.ideal ||
+                args[0].video?.height?.exact ||
+                args[0].video?.height ||
+                720,
             },
             audio: false,
           };
@@ -46,6 +48,9 @@ function monkeyPatchMediaDevices(ratioX, ratioY, zoomLevel) {
             navigator.mediaDevices,
             constraints
           );
+
+          console.log({ constraints, stream });
+
           return applyCroppingToStream(
             stream,
             constraints.video.width,
@@ -67,9 +72,6 @@ function monkeyPatchMediaDevices(ratioX, ratioY, zoomLevel) {
   console.log("VIRTUAL WEBCAM INSTALLED.");
 }
 
-/**
- * Applies a perfectly centered 6:19 crop to a media stream.
- */
 function applyCroppingToStream(
   stream,
   originalWidth,
@@ -121,6 +123,10 @@ function applyCroppingToStream(
 }
 
 function calculateAspectRatio(originalWidth, originalHeight, ratioX, ratioY) {
+  if (typeof ratioX !== "number" || typeof ratioY !== "number") {
+    return { cropHeight: cropHeight, cropWidth: cropWidth };
+  }
+
   const targetAspectRatio = ratioX / ratioY;
   const originalAspectRatio = originalWidth / originalHeight;
 
@@ -143,4 +149,4 @@ function calculateAspectRatio(originalWidth, originalHeight, ratioX, ratioY) {
   return { cropHeight, cropWidth };
 }
 
-export { monkeyPatchMediaDevices };
+export { patchMediaDevices };
